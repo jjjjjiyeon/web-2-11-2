@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>The One 제품 페이지 - 최종 통합본</title>
+    <style>
+        @font-face {
+            font-family: 'Pretendard';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-display: swap;}
+
+        @font-face {
+            font-family: 'Pretendard';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-display: swap;}
+
+        @font-face {
+            font-family: 'Pretendard';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2') format('woff2');
+            font-weight: 300;
+            font-display: swap;}
+
+        body, h1, h2, h3, p, ul, li {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;}
+
+        li { list-style-type: none; }
+        a { text-decoration: none; color: black; }
+        body {
+            background-color: white;
+            font-family: 'Pretendard', sans-serif;
+            overflow-x: hidden;
+            color: #333;}
+
+        html { scroll-behavior: smooth; }
+
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 800px;
+            padding: 12px 30px;
+            background-color: white;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;}
+
+        .contents {
+            width: 800px;
+            margin: auto;
+            position: relative;
+            padding: 100px 0px;}
+
+        .time-bg-section {
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 600px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center; 
+            text-align: center;}
+
+        .time-bg-section .contents {
+            padding-top: 0 !important;  
+            margin-top: 150px !important; 
+            padding-bottom: 0 !important;}
+
+        .time-label-big {
+            font-size: 96px;
+            font-weight: 800;
+            margin-top: 0 !important;
+            margin-bottom: 10px;
+            line-height: 1.0; }
+
+        .desc-sub {
+            font-size: 24px;
+            font-weight: 500;}
+
+
+        #s-morning { background-image: url('mon.jpg'); color: #222222; }
+        #s-daytime { background-image: url('day.jpg'); color: #222222; }
+        #s-evening { background-image: url('eve.jpg'); color: #ffffff; }
+        /* 소개 섹션 배경 */
+        #s2 {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('package.png');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            background-attachment: fixed;
+            min-height: 100vh;}
+
+
+        .flex-box {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 20px;}
+        .text-area { flex: 0 0 320px; word-break: keep-all; }
+        .image-area { flex: 1; }
+        .desc-big { font-size: 18px; line-height: 1.6; color: #666; word-break: keep-all; }
+        .bg-gray { background: #f8f8f9; }
+        .menu { display: flex; gap: 10px; }
+        .menu li a {
+            display: block;
+            padding: 8px 20px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            font-size: 14px;}
+        .menu li:last-child a { background-color: #3b82f6; color: white; border: none; }
+        .detail-pill {
+            background: white;
+            border-radius: 30px;
+            padding: 14px 24px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #333;}
+        .pill-icon {
+            background: #f0f0f0;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #666;
+            flex-shrink: 0;}
+        .stat-box {
+            flex: 1;
+            background: white;
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;}
+        .stat-label { font-size: 13px; color: #888; margin-bottom: 12px; line-height: 1.4; }
+        .stat-value { font-size: 26px; font-weight: 700; line-height: 1.2; color: #222; margin-bottom: 12px; }
+        .stat-icon { font-size: 28px; }
+        .stat-image { width: 70px; margin-top: 10px; }
+        .review-card {
+            flex: 1;
+            background: white;
+            border-radius: 20px;
+            padding: 25px 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+            word-break: keep-all;}
+        .review-card .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: block;
+            background: #ddd;
+            object-fit: cover;}
+    </style>
+</head>
+<body>
+<nav>
+        <div class="logo"><a href="#">The One</a></div>
+        <ul class="menu">
+
+            <li><a href="#s2" style="transition: all 0.3s ease;" 
+                   onmouseover="this.style.color='#3b82f6'; this.style.borderColor='#3b82f6'" 
+                   onmouseout="this.style.color='black'; this.style.borderColor='#ddd'">제품소개</a></li>
+            
+            <li><a href="#s-morning" style="transition: all 0.3s ease;" 
+                   onmouseover="this.style.color='#3b82f6'; this.style.borderColor='#3b82f6'" 
+                   onmouseout="this.style.color='black'; this.style.borderColor='#ddd'">살펴보기</a></li>
+            
+            <li><a href="#pay" style="background-color: #3b82f6; color: white; border: none; transition: all 0.3s ease;" 
+                   onmouseover="this.style.backgroundColor='#2563eb'; this.style.transform='scale(1.05)'" 
+                   onmouseout="this.style.backgroundColor='#3b82f6'; this.style.transform='scale(1)'">구매하기</a></li>
+        </ul>
+    </nav>
+    <header>
+        <div class="contents" style="text-align: center; padding-top: 150px;">
+            <h1 style="font-size: 80px; margin-bottom: 10px;">The <strong>One</strong></h1>
+            <h3 style="font-size: 24px; color: #333; font-weight: 500; margin-bottom: 40px;">하나의 형태, 무한한 쓰임.</h3>
+            <div style="margin-bottom: 60px;">
+                <a href="#pay" style="
+                    display: inline-block;
+                    background-color: #3b82f6;
+                    color: white;
+                    padding: 15px 40px;
+                    border-radius: 30px;
+                    font-size: 18px;
+                    font-weight: 500;
+                    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+                    transition: transform 0.2s ease;
+                    cursor: pointer;
+                " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                    구입하기
+                </a>
+            </div>
+            <img src="theone.png" style="width: 90%;">
+        </div>
+    </header>
+    <section id="s1" class="bg-gray">
+        <div class="contents" style="padding: 150px 0;">
+            <div class="flex-box" style="margin-bottom: 100px;">
+                <div class="text-area">
+                    <h2 style="font-size: 28px; line-height: 1.4; padding: 0;">코딩?<br>시스템 업데이트?<br>다 무슨 소리인지 모르겠어!</h2>
+                </div>
+                <div class="image-area">
+                    <img src="intro-1.png" style="width: 100%; border-radius: 10px;">
+                </div>
+            </div>
+            <div class="flex-box" style="flex-direction: row-reverse;">
+                <div class="text-area" style="text-align: right;">
+                    <h2 style="font-size: 28px; line-height: 1.4; padding: 0;">사실 당신,<br><br>너무 많고<br>너무 복잡한 세상에<br>진절머리 나버린건<br>아닌가요?</h2>
+                </div>
+                <div class="image-area">
+                    <img src="intro-2.png" style="width: 100%; border-radius: 10px;">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="s2">
+        <div class="contents">
+            <div style="padding: 200px 0;">
+                <h2 style="color: white; padding: 0; text-align: center; font-size: 36px; margin: 0;">
+                    당신에게 'The One'을<br>소개합니다.
+                </h2>
+            </div>
+        </div>
+    </section>
+    <section class="bg-gray">
+        <div class="contents" style="padding: 150px 0;">
+            <div class="flex-box">
+                <div class="text-area" style="padding-top: 50px;">
+                    <span style="font-size: 16px; color: #666; font-weight: 400; margin-bottom: 10px; display: block;">그래서, 다시, 근본으로</span>
+                    <h2 style="font-size: 60px; margin-bottom: 40px; letter-spacing: -2px;">The <strong>One</strong></h2>
+                    <p class="desc-big" style="color: #666; font-size: 18px;">
+                        인류 역사상 가장 오래되었지만,<br>
+                        가장 혁신적인 <strong>올인원 디바이스.</strong><br><br>
+                        The One 하나로, 당신의 하루를 책임집니다.
+                    </p>
+                </div>
+                <div class="image-area" style="overflow: visible;">
+                    <img src="stone-hand.png" style="width: 120%; max-width: none; transform: translateX(50px);">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="s-morning" class="time-bg-section">
+        <div class="contents">
+            <h2 class="time-label-big">Morning.</h2>
+            <p class="desc-sub">깨우는 돌</p>
+        </div>
+    </section>
+    <section class="bg-gray">
+        <div class="contents" style="padding: 150px 0; overflow: visible;">
+            <div class="flex-box" style="margin-bottom: 120px; overflow: visible;">
+                <div class="text-area">
+                    <h2 style="font-size: 32px; margin-bottom: 25px;">'정신'을 깨우다,<br><strong>각성, 한 손 안에.</strong></h2>
+                    <p class="desc-big">카페인보다 빠르고, 알람보다 정직한 각성. 거친 천연 마감의 모서리가 당신의 허벅지에 닿는 순간, 당신의 감각은 1초 만에 회의실 한가운데로 돌아옵니다. 졸음은 The One 앞에서 가장 빠르게 패배합니다.</p>
+                </div>
+                <div class="image-area" style="overflow: visible;">
+                    <img src="fun-5.png" style="width: 150%; max-width: none; transform: translateX(-10%);">
+                </div>
+            </div>
+            <div class="flex-box" style="flex-direction: row-reverse; overflow: visible;">
+                <div class="text-area" style="text-align: right;">
+                    <h2 style="font-size: 32px; margin-bottom: 25px;">'운동 신경'을 깨우다,<br><strong>아령보다 The One.</strong></h2>
+                    <p class="desc-big">어떤 덤벨도 흉내 낼 수 없는 비대칭의 그립감.
+                    The One은 매 세트마다 미세하게 다른 각도로 손에 잡힙니다. 정형화된 무게는 정형화된 근육을 만들 뿐입니다. 진짜 코어는, 예측할 수 없는 무게에서 만들어집니다.</p>
+                </div>
+                <div class="image-area" style="overflow: visible;">
+                    <img src="fun-2.png" style="width: 120%; max-width: none; transform: translateX(-30%)translateY(-30%);">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="s-daytime" class="time-bg-section">
+        <div class="contents">
+            <h2 class="time-label-big">Daytime.</h2>
+            <p class="desc-sub">자리를 지키는 돌</p>
+        </div>
+    </section>
+    <section class="bg-gray">
+        <div class="contents" style="padding: 150px 0; overflow: visible;">
+
+        <div class="flex-box" style="margin-bottom: 120px; overflow: visible; flex-direction: row-reverse;">
+
+            <div class="text-area" style="text-align: right;">
+                <h2 style="font-size: 32px; margin-bottom: 25px;">효과적인 책 고정,<br><strong>펼쳐진 그 페이지 그대로.</strong></h2>
+                <p class="desc-big">카페 야외 테이블, 갑작스러운 바람.<br>
+                당신의 페이지는 더 이상 흔들리지 않습니다.<br>
+                The One의 압도적인 질량은<br>
+                277g짜리 양장본부터 신문 한 면까지,<br>
+                어떤 종이도 정확히<br>
+                그 자리에 머무르게 만듭니다.</p>
+            </div>
+
+            <div class="image-area" style="overflow: visible;">
+                <img src="fun-1.png" style="width: 180%; max-width: none; transform: translateX(-30%);">
+            </div>
+        </div>
+
+<div class="contents" style="padding: 150px 0; text-align: center; overflow: visible !important;"> 
+    <div style="max-width: 600px; margin: 0 auto 50px auto;">
+        <h2 style="font-size: 36px; font-weight: 700; line-height: 1.2; margin-bottom: 20px; letter-spacing: -1px;">
+            비워도, 지키다.<br>엄청난 존재감
+        </h2>
+        <p class="desc-big" style="color: #666; line-height: 1.6; word-break: keep-all;">
+            카페에서 화장실에 가는 그 짧은 순간, 당신의 자리에 누구도 앉을 수 없게 됩니다. 
+            노트북보다 안전하고, 가방보다 위협적이며, 그 어떤 표지판보다 직관적입니다. 
+            <br><strong>The One은 침묵으로 영역을 선언합니다.</strong>
+        </p>
+    </div>
+
+    <div style="width: 100%; display: flex; justify-content: center; overflow: visible !important;">
+        <img src="fun-4.png" style="
+            width: 150%;
+            max-width: 150vw; 
+            flex-shrink: 0; 
+            border-radius: 15px;
+            transform: translateY(50px); 
+            position: relative;     
+            z-index: 100;">
+    </div>
+</div>
+    </section>
+    <section id="s-evening" class="time-bg-section">
+        <div class="contents">
+            <h2 class="time-label-big">Evening.</h2>
+            <p class="desc-sub">끓는 돌</p>
+        </div>
+    </section>
+    <section>
+        <div class="contents" style="padding: 150px 0; overflow: visible;">
+
+<div class="flex-box" style="margin-bottom: 120px; overflow: visible;">
+
+    <div class="text-area" style="flex: 0 0 500px; word-break: keep-all;">
+        <h2 style="font-size: 32px; margin-bottom: 25px;">끓기 위한 준비,<br><strong>모터도, 칼날도 필요없다.</strong></h2>
+        <p class="desc-big" style="font-size: 18px; line-height: 1.8; color: #666;">
+            모터도, 칼날도, 소음도 없습니다. 후추 한 알, 마늘 한 쪽, 견과류 한 줌. 
+            손목의 무게만으로 The One은 그 어떤 푸드 프로세서보다 정직한 입자를 만들어냅니다. 
+            심지어, 분해 청소도 필요 없죠.
+        </p>
+    </div>
+    <div class="image-area" style="overflow: visible;">
+
+        <img src="fun-3.png" style="width: 130%; max-width: none; transform: translateX(10%);">
+    </div>
+</div>
+
+            <div class="flex-box" style="flex-direction: row-reverse; overflow: visible;">
+                <div class="text-area" style="text-align: right;">
+                    <h2 style="font-size: 32px; margin-bottom: 25px;">태초의 맛,<br><strong>하나면 끝.</strong></h2>
+                    <p class="desc-big">유럽 민담 속 나그네는 돌 하나로
+                    마을 전체를 먹였습니다.
+                    우리는 그것을 오랫동안 우화로만 여겨왔죠.
+                    끓는 물 위에 The One을 넣어보세요.
+                    4억 년간 숙성된 60여 종의 미네랄이 당신의 냄비를 태초의 맛으로 채웁니다. 다시다도, 치킨스톡도 필요 없습니다.
+                    그저 The One이면, 끝.</p>
+                </div>
+                <div class="image-area" style="overflow: visible;">
+                    <img src="fun-6.png" style="width: 180%; max-width: none; transform: translateX(-30%);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background-color: #222222; overflow: hidden;"> 
+        <div class="contents" style="padding: 120px 0;">
+            <h2 style="font-size: 28px; font-weight: 700; line-height: 1.4; margin-bottom: 60px; word-break: keep-all; text-align: center; color: #fff;">
+                당신의 하루를 묵묵히 채워줄 친구,<br>언제나 당신 곁에.
+            </h2>
+
+            <div style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background-color: #000;">
+                <div style="width: 100%; aspect-ratio: 2.35 / 1; overflow: hidden;">
+                    <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                        <source src="rocky.mov" type="video/quicktime">
+                        <source src="rocky.mov" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <p style="font-size: 15px; color: #999; text-align: center; letter-spacing: 1px; margin-top: 60px;">
+                당신이 친구를 원한다면 <strong style="color: #fff;">The One</strong>은 당신의 가장 고요한 친구가 됩니다.
+            </p>
+        </div>
+    </section>
+ 
+
+    <section>
+        <div class="contents" style="padding: 80px 0;">
+            <h2 style="font-size: 26px; font-weight: 700; margin-bottom: 30px;">
+                보다 자세히 들여다보기.
+            </h2>
+            <div style="background: #f0f0f2; border-radius: 30px; padding: 60px; display: flex; align-items: center; gap: 30px;">
+                <div style="flex: 1; display: flex; flex-direction: column; gap: 12px;">
+                    <div class="detail-pill">
+                        <span class="pill-icon">+</span>
+                        가장 완벽에 가까운 형태
+                    </div>
+                    <div class="detail-pill">
+                        <span class="pill-icon">+</span>
+                        우리가 꿈꾸던, 완벽한 무선
+                    </div>
+                    <div class="detail-pill">
+                        <span class="pill-icon">+</span>
+                        혁신적 견고함
+                    </div>
+                    <div class="detail-pill">
+                        <span class="pill-icon">+</span>
+                        지속가능성의 종착지
+                    </div>
+                </div>
+                <div style="flex: 1; text-align: center;">
+                    <img src="theone.png" style="max-width: 90%;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-gray">
+        <div class="contents" style="padding: 100px 0;">
+            <h2 style="font-size: 26px; font-weight: 700; line-height: 1.4; margin-bottom: 35px;">
+                구매할 만하냐구요?<br>그럼요.
+            </h2>
+            <p style="font-size: 14px; font-weight: 600; margin-bottom: 25px; color: #222;">
+                Phone, laptop보다 더 좋은 이유.
+            </p>
+
+            <div style="display: flex; gap: 15px; margin-bottom: 70px;">
+            <div class="stat-box" style="position: relative; overflow: hidden;"> 
+                <p class="stat-label">직선과는 비교할 수 없는<br>자연스러운 곡선</p>
+                <img src="theone-part.png" class="stat-image" style="
+                    width: 70px; 
+                    display: block; 
+                    margin: 0 auto;
+                    transform: scale(2.8) translateY(15px);  ">
+            </div>
+                <div class="stat-box">
+                    <p class="stat-label">최대</p>
+                    <p class="stat-value">무한대 시간<br>더 긴</p>
+                    <span class="stat-icon">🔋</span>
+                </div>
+                <div class="stat-box">
+                    <p class="stat-label">하나면 되니까.<br><br></p>
+                    <p class="stat-value">99%<br>가벼운</p>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h3 style="font-size: 16px; font-weight: 700;">직접 써본 이들의 생생한 후기.</h3>
+                <a href="#" style="font-size: 13px; color: #666;">전체 리뷰 보러가기 ></a>
+            </div>
+
+            <div style="display: flex; gap: 12px;">
+                <div class="review-card">
+                    <img src="mimo-1.png" class="avatar">
+                    <p>내가 왜<br>무거운 물건들을<br>더 들고 다녔는지<br>모르겠어요.<br><strong>The One 이면<br>다 되는데!</strong></p>
+                </div>
+                <div class="review-card">
+                    <img src="mimo-2.png" class="avatar">
+                    <p>매일 충전을<br>까먹는 저에게<br>가장 최고의<br>물건이에요!<br><strong>완전 강추입니다!</strong></p>
+                </div>
+                <div class="review-card">
+                    <img src="mimo-3.png" class="avatar">
+                    <p>정말 하루를 <br>다 맡길 수 있을<br>줄 몰랐어요.<br>써보기 전에는<br><strong>거짓말 같다니까요?</strong></p>
+                </div>
+                <div class="review-card">
+                    <img src="mimo-4.png" class="avatar">
+                    <p>지금까지 써왔던<br>기기들과는<br>비교할 수<br>없어요!<br><strong>이제 근본이구나!</strong><br>를 깨달아요.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pay">
+        <div class="contents" style="padding: 100px 0; text-align: center;">
+            <h2 style="font-size: 26px; font-weight: 700; line-height: 1.4; margin-bottom: 50px;">
+                갖고 싶던 The One.<br>이제 당신 하루의 일부로,
+            </h2>
+            <img src="theone.png" style="width: 220px; margin-bottom: 40px;">
+            <p style="font-size: 15px; color: #555; margin-bottom: 25px;">₩1,590,000원</p>
+            <a href="javascript:void(0);" onclick="openPayPopup()" style="
+            display: inline-block; 
+            background: #3b82f6; 
+            color: white; 
+            padding: 14px 70px; 
+            border-radius: 30px; 
+            font-size: 14px; 
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3); 
+            transition: transform 0.2s ease;
+            cursor: pointer;
+            text-decoration: none;
+        " 
+        onmouseover="this.style.transform='scale(1.05)'" 
+        onmouseout="this.style.transform='scale(1)'">
+            당장 결제
+        </a>
+        </div>
+    </section>
+ 
+    <footer id="footer" style="background-color: #fcfcfc; border-top: 1px solid #eee; width: 100%;">
+        <div class="contents" style="padding: 120px 0 80px 0;">
+            <div style="max-width: 500px; margin-bottom: 100px; text-align: left; word-break: keep-all;">
+                <h2 style="font-size: 90px; font-weight: 700; letter-spacing: -2px; margin-bottom: 20px;">The <strong>One</strong></h2>
+                <p style="font-size: 31px; font-weight: 500; color: #222; line-height: 1.2;">
+                    단 하나로,<br>모든 것을.
+                </p>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; border-top: 1px solid #eee; padding-top: 50px;">
+                <div style="color: #999; font-size: 16px;">Copyright © 2026 The One. 모든 권리 보유.</div>
+                <ul style="display: flex; gap: 30px; font-size: 16px;">
+                    <li><a href="#" style="color: #666;">개인정보 처리방침</a></li>
+                    <li><a href="#" style="color: #666;">이용 약관</a></li>
+                    <li><a href="#" style="color: #666;">고객 센터</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+
+    <div id="payModal" style="
+        display: none; 
+        position: fixed; 
+        top: 0; left: 0; 
+        width: 100%; height: 100%; 
+        background-color: rgba(0,0,0,0.7); 
+        z-index: 2000; 
+        align-items: center; 
+        justify-content: center;
+    " onclick="closePayPopup()">
+
+        <div style="
+            background: white; 
+            padding: 20px; 
+            border-radius: 20px; 
+            text-align: center; 
+            width: 320px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+        " onclick="event.stopPropagation();"> 
+            <img src="pay.jpg" style="width: 100%; border-radius: 10px; margin-bottom: 15px;" alt="결제 안내 이미지">
+            <p style="font-size: 14px; color: #333; font-weight: 500; margin-bottom: 15px;">KB국민 11090200012533 문지연</p>
+            <button onclick="closePayPopup()" style="
+                width: 100%; 
+                padding: 10px; 
+                background: #eee; 
+                border: none; 
+                border-radius: 10px; 
+                cursor: pointer;
+                font-weight: 600;
+            ">닫기</button>
+        </div>
+    </div>
+
+    <script>
+
+        function openPayPopup() {
+            document.getElementById('payModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden'; 
+        }
+
+
+        function closePayPopup() {
+            document.getElementById('payModal').style.display = 'none';
+            document.body.style.overflow = 'auto'; 
+        }
+    </script>
+
+
+</body>
+</html>
